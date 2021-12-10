@@ -55,6 +55,20 @@ e.g.
 
 will not only put everything inside a file, but rename that file with a timestamp resulting in ```BATS-test_(local-time-date).log```
 
+### Local ENV
+
+To load your local environment and test you local code, first we need to run the container, in this case, without setup.
+
+```docker run --name ardrive-cli-bats --rm --init -ti -e NO_SETUP=1 --mount type=tmpfs,destination=/home/node/tmp ardrive-bats-docker   ```
+
+Now, in a new terminal, we just copy ardrive-cli folder
+
+If current working directory is the repo root, we need to execute:
+
+```docker cp . ardrive-cli-bats:/home/node/ardrive-cli ```
+
+Now you will have you local environment loaded into Docker.
+Every time you want to load your latest changes, just run the above command again.
 ## BATS tests 
 
 To run a single file, just use
