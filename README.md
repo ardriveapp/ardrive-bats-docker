@@ -1,5 +1,7 @@
 # Bats Docker
 
+Docker image with every tool you need to test the Ardrive CLI with BATS.
+
 We *strongly* suggest to load recommended VSCode extensions for this to work with BATS
 
 jq, GNU parallels are included. Vim is the default text editor.
