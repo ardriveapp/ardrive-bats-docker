@@ -2,7 +2,7 @@
 
 We *strongly* suggest to load recommended VSCode extensions for this to work with BATS
 
-jq, GNU parallels are included. Vim is the default text editor.v
+jq, GNU parallels are included. Vim is the default text editor.
 ## Build & Run
 
 ### Build
@@ -35,7 +35,7 @@ Run
 
 ```$ docker run --name ardrive-bats --rm --init -td --mount type=tmpfs,destination=/home/node/tmp ardrive-bats-docker && sleep 20 ```
 
-This includes a sleep of 20 seconds to ensure Docker clones and builds.
+This includes a sleep of 20 seconds to ensure Docker clones and builds. Please be aware that this docker will last till you shutdown your system OR you manually stop it (docker stop ardrive-bats)
 
 Now we can run commands inside docker. Below we run ardrive CLI on *ardrive-cli* directory
 
