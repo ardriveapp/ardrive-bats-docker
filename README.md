@@ -118,7 +118,7 @@ To see a list of every included package as well as some examples please check [N
 
 To "disable" any host, we just need to redirect its traffic.
 
-echo "{IP where we want to redirect} {host I want to redirect}" >> /etc/hosts
+```echo "{IP where we want to redirect} {host I want to redirect}" >> /etc/hosts```
 
 A real example would be ```echo "0.0.0.0 http://ardrive.io" >> /etc/hosts``` to redirect all the traffic to an invalid IP (local-host)
 
