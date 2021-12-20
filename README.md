@@ -29,6 +29,30 @@ To disable cloning and installing, use:
 
 ``` -e NO_SETUP=1 ```
 
+## Interact with a wallet
+
+### Put wallet inside your container
+
+To copy our wallet inside Docker, we just need the following command.
+Image was intended to work with only ONE wallet at a time. 
+
+Running the below command a 2nd time will overwrite the 1st wallet.
+
+``docker exec -i ardrive sh -c 'cat > /home/node/tmp/wallet.json' < [path to my wallet file]``
+
+Bear in mind that with this method, Wallet file is never written to host system.
+
+### Wallet Operations
+
+There is a $WALLET variable directly pointing to /home/node/tmp/wallet.json inside the Docker.
+
+In order to run any command that requires a wallet you could just replace its path with $WALLET
+
+e.g. for a private file
+
+``yarn ardrive file-info -f [file-id] -w $WALLET -p [my-unsafe-password]``
+
+
 Please check Ardrive CLI Docker [readme](https://github.com/ardriveapp/ardrive-cli-docker/blob/production/README.md#run-ardrive-cli-docker) for MORE options and wallet interactions
 
 ### Detached
