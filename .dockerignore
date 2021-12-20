@@ -1,0 +1,6 @@
+.git
+*.code-workspace
+dockerfile
+.gitignore
+.vscode
+readme.md
