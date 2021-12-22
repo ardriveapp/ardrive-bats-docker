@@ -75,8 +75,13 @@ RUN find /home/node/test_samples -type f -exec chmod 777 {} \;
 USER node
 WORKDIR $HOME
 
-# Set env to tmpfs path
+# Set env to tmpfs pathENV WALLET /home/node/tmp/wallet.json
 ENV WALLET /home/node/tmp/wallet.json
+# Set testing ENV variables to sample IDs
+ENV PUB_DRIVE_ID "00000000-0000-0000-0000-000000000000"
+ENV PUB_FOLD_ID "00000000-0000-0000-0000-000000000000"
+ENV PUB_FILE_ID "00000000-0000-0000-0000-000000000000"
+
 # Create uplads folder
 RUN mkdir uploads
 # Patch bashrc
