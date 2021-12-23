@@ -77,7 +77,7 @@ RUN find /home/node/test_samples -type f -exec chmod 777 {} \;
 USER node
 WORKDIR $HOME
 
-# Set env to tmpfs pathENV WALLET /home/node/tmp/wallet.json
+# Set env to tmpfs path
 ENV WALLET /home/node/tmp/wallet.json
 # Set testing ENV variables to sample IDs
 ENV PUB_DRIVE_ID "00000000-0000-0000-0000-000000000000"
