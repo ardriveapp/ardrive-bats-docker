@@ -4,16 +4,16 @@ Docker image with every tool you need to test the Ardrive CLI with BATS.
 
 We *strongly* suggest to load recommended VSCode extensions for this to work with BATS
 
-jq, GNU parallels are included. Vim is the default text editor.
-## Build & Run
+jq, GNU parallels are included. Vim is the default text editor but Nano is also included.
+# Build & Run
 
-### Build
+## Build
 
 On repo root folder:
 
 ```$ docker build . -t ardrive-bats-docker:latest      ```                                                                  
 
-### Run
+## Run
 
 ### Interactive
 
@@ -28,8 +28,6 @@ To build a specific branch add this flag:
 To disable cloning and installing, use:
 
 ``` -e NO_SETUP=1 ```
-
-Please check Ardrive CLI Docker [readme](https://github.com/ardriveapp/ardrive-cli-docker/blob/production/README.md#run-ardrive-cli-docker) for MORE options and wallet interactions
 
 ### Detached
 
@@ -69,8 +67,34 @@ If current working directory is the repo root, we need to execute:
 
 ```docker cp . ardrive-cli-bats:/home/node/ardrive-cli ```
 
-Now you will have you local environment loaded into Docker.
-Every time you want to load your latest changes, just run the above command again.
+Now you will have you local environment loaded into Docker. You do not need to run ```yarn && yarn build ```again
+Every time you want to load your latest changes, just run the above command again. For a clean environment, you could always remove the ardrive-cli folder INSIDE the docker. 
+
+```rm -rf ardrive-cli ```
+
+## Interact with a wallet
+
+### Put wallet inside your container
+
+To copy our wallet inside Docker, we just need the following command.
+Image was intended to work with only ONE wallet at a time. 
+
+Running the below command a 2nd time will overwrite the 1st wallet.
+
+``docker exec -i ardrive-cli-bats -c 'cat > /home/node/tmp/wallet.json' < [path to my wallet file]``
+
+Bear in mind that with this method, Wallet file is never written to host system.
+
+### Wallet Operations
+
+There is a $WALLET variable directly pointing to /home/node/tmp/wallet.json inside the Docker.
+
+In order to run any command that requires a wallet you could just replace its path with $WALLET
+
+e.g. for a private file
+
+``yarn ardrive file-info -f [file-id] -w $WALLET -p [my-unsafe-password]``
+
 ## BATS tests 
 
 To run a single file, just use
@@ -95,3 +119,37 @@ Supported ones are pretty (default),tap (default w/o term), tap13 (nicer), junit
 ## Writing tests
 
 For documentation regarding how to write tests, please check readme [on ardrive-cli/bats_test](https://github.com/ardriveapp/ardrive-cli/blob/master/bats_test/readme.md)
+
+## Network tests
+
+Disclaimer: * Might now work on MacOS *
+
+With your ardrive-bats-docker running, in another terminal we run the following command:
+
+```docker run -it --rm --cap-add=NET_ADMIN --net container:ardrive-cli-bats nicolaka/netshoot```
+
+This will open a new container using the public Netshoot image that controls CLI docker network capabilities.
+
+To see a list of every included package as well as some examples please check [Netshoot repo](https://github.com/nicolaka/netshoot#netshoot-a-docker--kubernetes-network-trouble-shooting-swiss-army-container)
+
+
+## Use examples
+### Redirecting Traffic
+
+To "disable" any host, we just need to redirect its traffic.
+
+```echo "{IP where we want to redirect} {host I want to redirect}" >> /etc/hosts```
+
+A real example would be ```echo "0.0.0.0 http://ardrive.io" >> /etc/hosts``` to redirect all the traffic to an invalid IP (local-host)
+
+In order to mimic/achieve different behaviors, we can use ```iproute2``` 
+
+e.g. to get an "Unreachable" we could run this command inside Netshoot image
+
+```ip route add unreachable <IP we redirected>```
+
+For more examples please check [iproutes2 documentation](https://baturin.org/docs/iproute2/#ip-route-add-blackhole)
+
+### Measure traffic
+
+Inside Netshoot, run ```iftop``` to monitor connections and measure speeds e.g. while uploading/downloading
