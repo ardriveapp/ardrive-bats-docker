@@ -19,7 +19,7 @@ On repo root folder:
 
 Use this command to execute an interactive session and build *master*
 
-```$ docker run --name ardrive-bats --rm --init -it --mount type=tmpfs,destination=/home/node/tmp ardrive-bats-docker   ```
+```$ docker run --name ardrive-cli-bats --rm --init -it --mount type=tmpfs,destination=/home/node/tmp ardrive-bats-docker   ```
 
 To build a specific branch add this flag:
 
@@ -35,17 +35,17 @@ Please check Ardrive CLI Docker [readme](https://github.com/ardriveapp/ardrive-c
 
 Run
 
-```$ docker run --name ardrive-bats --rm --init -td --mount type=tmpfs,destination=/home/node/tmp ardrive-bats-docker && sleep 20 ```
+```$ docker run --name ardrive-cli-bats --rm --init -td --mount type=tmpfs,destination=/home/node/tmp ardrive-bats-docker && sleep 20 ```
 
 This includes a sleep of 20 seconds to ensure Docker clones and builds. Please be aware that this docker will last till you shutdown your system OR you manually stop it (docker stop ardrive-bats)
 
 Now we can run commands inside docker. Below we run ardrive CLI on *ardrive-cli* directory
 
-```docker exec -w /home/node/ardrive-cli ardrive-bats yarn ardrive```
+```docker exec -w /home/node/ardrive-cli ardrive-cli-bats yarn ardrive```
 
 To run every sample test, we just need to use
 
-```docker exec -w /home/node/ardrive-cli ardrive-bats bats -r ../test_samples/```
+```docker exec -w /home/node/ardrive-cli ardrive-cli-bats bats -r ../test_samples/```
 
 ```-r``` flag stands for recursive
 
@@ -53,7 +53,7 @@ And in case we want to keep the output, just pipe the content
 
 e.g.
 
-```docker exec -w /home/node/ardrive-cli ardrive-bats bats -r ../test_samples/ | tee my.log && mv my.log BATS-test_$(date +%d-%m-%Y_%H-%S).log```
+```docker exec -w /home/node/ardrive-cli ardrive-cli-bats bats -r ../test_samples/ | tee my.log && mv my.log BATS-test_$(date +%d-%m-%Y_%H-%S).log```
 
 will not only put everything inside a file, but rename that file with a timestamp resulting in ```BATS-test_(local-time-date).log```
 
