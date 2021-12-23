@@ -1,3 +1,7 @@
-if [[ -z "${NO_SETUP}" ]]; then
-  source entry.sh
+if [[ -z "${NO_SETUP}" ]] && [[ ! -f "/home/node/ardrive-cli/package.json" ]]; then
+    source /home/node/entry.sh
+fi
+
+if [[ -f "${WALLET}" ]] && [[ $PUB_DRIVE_ID == '00000000-0000-0000-0000-000000000000' ]]; then
+    source /home/node/entities.sh
 fi
