@@ -122,7 +122,7 @@ For documentation regarding how to write tests, please check readme [on ardrive-
 
 ## Network tests
 
-Disclaimer: * Might now work on MacOS *
+Disclaimer: * Might not work on MacOS *
 
 With your ardrive-bats-docker running, in another terminal we run the following command:
 
