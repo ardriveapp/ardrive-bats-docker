@@ -13,7 +13,9 @@ RUN apt-get install --no-install-recommends -y \
     jq \
     parallel \
     sudo \
-    vim
+    vim \
+    ssh \
+    net-tools
 
 # Clear apt cache
 RUN apt-get clean -y
