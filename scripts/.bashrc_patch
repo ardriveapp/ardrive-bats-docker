@@ -1,7 +1,9 @@
+export ENTITIES="/home/node/ardrive-cli/.bats/entities.sh"
+
 if [[ -z "${NO_SETUP}" ]] && [[ ! -f "/home/node/ardrive-cli/package.json" ]]; then
     source /home/node/entry.sh
 fi
 
-if [[ -f "${WALLET}" ]] && [[ $PUB_DRIVE_ID == '00000000-0000-0000-0000-000000000000' ]]; then
-    source /home/node/entities.sh
+if [[ -f "${ENTITIES}" ]] && [[ -f "${WALLET}" ]] && [[ $PUB_DRIVE_ID == '00000000-0000-0000-0000-000000000000' ]]; then
+    source /home/node/ardrive-cli/.bats/entities.sh
 fi
