@@ -34,8 +34,6 @@ COPY scripts/yarnInstall.sh /home/node/
 RUN chmod +x /home/node/yarnInstall.sh
 COPY scripts/entry.sh /home/node/
 RUN chmod +x /home/node/entry.sh
-COPY scripts/entities.sh /home/node/
-RUN chmod +x /home/node/entities.sh
 COPY scripts/.bashrc_patch /home/node/
 RUN chmod +r /home/node/.bashrc_patch
 
