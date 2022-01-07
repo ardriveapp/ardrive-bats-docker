@@ -67,7 +67,7 @@ If current working directory is the repo root, we need to execute:
 
 ```docker cp . ardrive-cli-bats:/home/node/ardrive-cli ```
 
-Now you will have you local environment loaded into Docker. You do not need to run ```yarn && yarn build ```again
+Now you will have your local environment loaded into Docker. You do not need to run ```yarn && yarn build ```again
 Every time you want to load your latest changes, just run the above command again. For a clean environment, you could always remove the ardrive-cli folder INSIDE the docker. 
 
 ```rm -rf ardrive-cli ```
