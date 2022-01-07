@@ -1,4 +1,6 @@
 export ENTITIES="/home/node/ardrive-cli/.bats/entities.sh"
+#Set on Dockerfile as well
+export PATH="/home/node/packages/node_modules/.bin:${PATH}"
 
 if [[ -z "${NO_SETUP}" ]] && [[ ! -f "/home/node/ardrive-cli/package.json" ]]; then
     source /home/node/entry.sh
