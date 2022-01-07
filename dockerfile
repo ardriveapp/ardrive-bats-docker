@@ -11,6 +11,7 @@ RUN apt-get update
 RUN apt-get install --no-install-recommends -y \
     git \
     jq \
+    nano \
     parallel \
     sudo \
     vim
@@ -76,6 +77,11 @@ WORKDIR $HOME
 
 # Set env to tmpfs path
 ENV WALLET /home/node/tmp/wallet.json
+# Set testing ENV variables to sample IDs
+ENV PUB_DRIVE_ID "00000000-0000-0000-0000-000000000000"
+ENV PUB_FOLD_ID "11111111-1111-1111-1111-111111111111"
+ENV PUB_FILE_ID "22222222-2222-2222-2222-222222222222"
+
 # Create uplads folder
 RUN mkdir uploads
 # Patch bashrc
