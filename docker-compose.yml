@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  cli:
+    image: ardrive-bats-docker
+    network_mode: bridge
+    stdin_open: true
+    tty: true
+  arlocal:
+    image: textury/arlocal
+    network_mode: bridge
+    ports:
+      - "1984:1984"
