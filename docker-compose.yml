@@ -9,12 +9,12 @@ services:
       - /home/node/tmp
     env_file:
       - bats-variables.env
-    environment:
-      - arlocal_ip
     network_mode: bridge
+    hostname: bats-cli.docker
   arlocal:
     image: textury/arlocal
     container_name: arlocal
     ports:
       - "1984:1984"
     network_mode: bridge
+    hostname: arlocal.docker
