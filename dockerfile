@@ -13,6 +13,7 @@ RUN apt-get install --no-install-recommends -y \
     jq \
     iputils-ping \
     nano \
+    nmap \
     parallel \
     sudo \
     vim
