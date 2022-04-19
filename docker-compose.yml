@@ -1,15 +1,20 @@
 version: "3.8"
-
 services:
   cli:
     image: ardrive-bats-docker
-    network_mode: bridge
+    container_name: cli
     stdin_open: true
     tty: true
+    tmpfs:
+      - /home/node/tmp
     env_file:
       - bats-variables.env
+    environment:
+      - arlocal_ip
+    network_mode: bridge
   arlocal:
     image: textury/arlocal
-    network_mode: bridge
+    container_name: arlocal
     ports:
       - "1984:1984"
+    network_mode: bridge
