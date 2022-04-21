@@ -29,7 +29,7 @@ let host = lastLine.match(/^(\S+)\s(.*)/).slice(1)[0]
 let arlocalGW = host.slice(0, -1) + '1'
 
 const arweave = new Arweave({
-    host: 'localhost',
+    host: arlocalGW,
     port: 1984,
     protocol: 'http'
 });
