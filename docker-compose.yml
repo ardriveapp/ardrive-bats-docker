@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  cli:
+    image: ardrive-bats-docker
+    container_name: cli
+    stdin_open: true
+    tty: true
+    tmpfs:
+      - /home/node/tmp
+    env_file:
+      - bats-variables.env
+    network_mode: bridge
+    hostname: bats-cli.docker
+  arlocal:
+    image: textury/arlocal
+    container_name: arlocal
+    ports:
+      - "1984:1984"
+    network_mode: bridge
+    hostname: arlocal.docker
