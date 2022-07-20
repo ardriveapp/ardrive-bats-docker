@@ -50,9 +50,9 @@ const updateEnvFile = (matchString, filePath, replaceString) => {
 //Get Arlocal Host
 const arlocalHost = await getArlocalHost()
 //Generate ENV variable
-const envArlocalGW = "ARLOCAL_GW=" + "'" + arlocalHost + "'"
+const envArlocalGW = "ARWEAVE_GATEWAY=" + "'" + arlocalHost + "'"
 //Update ENV file
-updateEnvFile('ARLOCAL_GW=', envFilePath, envArlocalGW)
+updateEnvFile('ARWEAVE_GATEWAY=', envFilePath, envArlocalGW)
 
 const arweave = new Arweave({
     host: arlocalHost,
@@ -79,3 +79,4 @@ if (await sweets.isTestNetwork()) {
 }
 
 //TODO: Trigger to load this .env and documentation
+//export $( grep -vE "^(#.*|\s*)$" bats-variables.env )
