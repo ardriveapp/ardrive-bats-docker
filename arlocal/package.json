@@ -1,0 +1,15 @@
+{
+	"name": "arlocal-helper",
+	"version": "1.0.0",
+	"main": "index.mjs",
+	"dependencies": {
+		"arlocal-sweets": "^1.0.1",
+		"arweave": "^1.10.23"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Permanent Data Solutions Inc",
+		"email": "info@ardrive.io",
+		"website": "https://ardrive.io"
+	}
+}
