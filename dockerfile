@@ -73,7 +73,8 @@ COPY test_samples/ /home/node/test_samples
 #Set everything inside 755 for quick tweaks
 RUN find /home/node/test_samples -type f -exec chmod 755 {} \;
 #Set everything inside Node tmp to 777
-RUN find /home/node/tmp -type f -exec chmod 777 {} \;
+RUN mkdir /home/node/tmp
+RUN chmod 777 /home/node/tmp
 
 # Copy Arlocal
 COPY arlocal /home/node/arlocal
