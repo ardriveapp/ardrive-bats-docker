@@ -98,3 +98,16 @@ Please check networking documentation [on ardrive-cli/bats_test](https://github.
 ## Writing tests and BATS
 
 For documentation about BATS, please check readme [on ardrive-cli/bats_test](https://github.com/ardriveapp/ardrive-cli/blob/master/bats_test/readme.md)
+
+## Quick Start Guide (Local Env with MacOS)
+
+1. Go to: `/ardrive-bats-docker`
+2. Build image: `docker build . -t ardrive-bats-docker:latest`
+3. Run container: `docker run --name ardrive-cli-bats --rm --init -ti -e NO_SETUP=1 --mount type=tmpfs,destination=/home/node/tmp ardrive-bats-docker`
+4. In a new shell, go to: `/ardrive-cli`
+5. Make sure a fresh `yarn build` has been run
+6. Copy Local CLI Env: `docker cp . ardrive-cli-bats:/tmp/ardrive-cli && docker exec -i ardrive-cli-bats bash -c 'cp -r /tmp/ardrive-cli /home/node/ardrive-cli'`
+7. Copy Wallet: `docker exec -i ardrive-cli-bats bash -c 'cat > /home/node/tmp/wallet.json' < [path to my wallet file]`
+8. Return to Bats Container Shell
+9. Setup Variables: `'exec $SHELL -l'`
+10. Run all tests: `bats -r bats-tests/`
