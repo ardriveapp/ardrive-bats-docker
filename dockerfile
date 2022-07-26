@@ -75,6 +75,8 @@ RUN find /home/node/test_samples -type f -exec chmod 755 {} \;
 
 # Copy Arlocal
 COPY arlocal /home/node/arlocal
+# Enable magic script
+RUN chmod +x /home/node/arlocal/magic.sh
 # Set Node as owner of each directory inside Arlocal
 RUN find /home/node/arlocal -type d -exec chown node:node {} \;
 # Set Node as owner of each file inside Arlocal
