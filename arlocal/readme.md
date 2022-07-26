@@ -15,3 +15,7 @@
 
 -> Test Setup
 - Should return latest wallet PATH `echo $ARLOCAL_WALLET`
+
+## Getting started
+
+Naming: bats cli service name is just "cli" so please replace `ardrive-cli-bats` with `cli` accordingly.
