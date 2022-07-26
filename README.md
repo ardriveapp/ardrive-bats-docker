@@ -81,47 +81,11 @@ Every time you want to load your latest changes, just run the above command agai
 
 ## Interact with a wallet
 
-### Put wallet inside your container
-
-To copy our wallet inside Docker, we just need the following command.
-Image was intended to work with only ONE wallet at a time.
-
-Running the below command a 2nd time will overwrite the 1st wallet.
-
-`docker exec -i ardrive-cli-bats bash -c 'cat > /home/node/tmp/wallet.json' < [path to my wallet file]`
-
-Bear in mind that with this method, Wallet file is never written to host system.
-
-### Wallet Operations
-
-There is a $WALLET variable directly pointing to /home/node/tmp/wallet.json inside the Docker.
-
-In order to run any command that requires a wallet you could just replace its path with $WALLET
-
-e.g. for a private file
-
-`yarn ardrive file-info -f [file-id] -w $WALLET -p [my-unsafe-password]`
+Please refer to [wallets document](https://github.com/ardriveapp/ardrive-cli/blob/master/bats_test/wallets.md) on ardrive-cli/bats_test
 
 ## BATS tests
 
-To run a single file, just use
-` bats <my-test-file.bats>`
-
-e.g.
-
-`bats ../test_samples//testing_hooks/hooks_sample.bats`
-
-Recursion is supported. To run every test inside a given folder:
-
-` bats -r ../test_samples/` from `~/ardrive-cli` will run each sample
-
-To parallelize jobs just add `-j <number of jobs>`
-
-e.g. 2 jobs `bats -r bats_test/ -j 2`
-
-To change output format, `-F` plus formatter.
-
-Supported ones are pretty (default),tap (default w/o term), tap13 (nicer), junit (XML)
+Please check [BATS Quick Guide on ardrive-cli/bats_test](https://github.com/ardriveapp/ardrive-cli/tree/master/bats_test#quick-guide)
 
 ## Writing tests
 
@@ -129,33 +93,7 @@ For documentation regarding how to write tests, please check readme [on ardrive-
 
 ## Network tests
 
-Disclaimer: _ Might not work on MacOS _
-
-With your ardrive-bats-docker running, in another terminal we run the following command:
-
-`docker run -it --rm --cap-add=NET_ADMIN --net container:ardrive-cli-bats nicolaka/netshoot`
-
-This will open a new container using the public Netshoot image that controls CLI docker network capabilities.
-
-To see a list of every included package as well as some examples please check [Netshoot repo](https://github.com/nicolaka/netshoot#netshoot-a-docker--kubernetes-network-trouble-shooting-swiss-army-container)
-
-## Use examples
-
-### Redirecting Traffic
-
-To "disable" any host, we just need to redirect its traffic.
-
-`echo "{IP where we want to redirect} {host I want to redirect}" >> /etc/hosts`
-
-A real example would be `echo "0.0.0.0 http://ardrive.io" >> /etc/hosts` to redirect all the traffic to an invalid IP (local-host)
-
-In order to mimic/achieve different behaviors, we can use `iproute2`
-
-e.g. to get an "Unreachable" we could run this command inside Netshoot image
-
-`ip route add unreachable <IP we redirected>`
-
-For more examples please check [iproutes2 documentation](https://baturin.org/docs/iproute2/#ip-route-add-blackhole)
+Please check networking documentation [on ardrive-cli/bats_test](https://github.com/ardriveapp/ardrive-cli/blob/master/bats_test/network_tools.md)
 
 ## Writing tests and BATS
 
