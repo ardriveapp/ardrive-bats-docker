@@ -70,8 +70,17 @@ ENV PATH="/home/node/packages/node_modules/.bin:${PATH}"
 
 # Fetch examples
 COPY test_samples/ /home/node/test_samples
-#Set everything inside 777 for quick tweaks
-RUN find /home/node/test_samples -type f -exec chmod 777 {} \;
+#Set everything inside 755 for quick tweaks
+RUN find /home/node/test_samples -type f -exec chmod 755 {} \;
+
+# Copy Arlocal
+COPY arlocal /home/node/arlocal
+# Enable magic script
+RUN chmod +x /home/node/arlocal/magic.sh
+# Set Node as owner of each directory inside Arlocal
+RUN find /home/node/arlocal -type d -exec chown node:node {} \;
+# Set Node as owner of each file inside Arlocal
+RUN find /home/node/arlocal -type f -exec chown node:node {} \;
 
 # Use non-root user
 USER node
@@ -79,6 +88,8 @@ WORKDIR $HOME
 
 # Set env to tmpfs path
 ENV WALLET /home/node/tmp/wallet.json
+
+# TODO review if we need these at all
 # Set testing ENV variables to sample IDs
 ENV PUB_DRIVE_ID "00000000-0000-0000-0000-000000000000"
 ENV ROOT_FOLDER_ID "11111111-1111-1111-1111-111111111111"

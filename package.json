@@ -1,12 +1,13 @@
 {
-  "name": "bats-on-steroids",
-  "version": "1.0.1",
-  "description": "This file is use for dependency management only and will never be used on the end Docker image",
-  "private": "true",
-  "devDependencies": {
-    "bats": "1.7.0",
-    "bats-support": "git+https://github.com/bats-core/bats-support",
-    "bats-assert": "git+https://github.com/bats-core/bats-assert",
-    "bats-file": "git+https://github.com/bats-core/bats-file"
-  }
+
+    "name": "bats-on-steroids",
+    "version": "1.0.1",
+    "description": "This file is use for dependency management only and will never be used on the end Docker image",
+    "private": "true",
+    "devDependencies": {
+        "bats": "^1.7.0",
+        "bats-support": "^0.3.0",
+        "bats-assert": "git+https://github.com/bats-core/bats-assert",
+        "bats-file": "git+https://github.com/bats-core/bats-file"
+    }
 }
