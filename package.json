@@ -1,7 +1,7 @@
 {
 
     "name": "bats-on-steroids",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "This file is use for dependency management only and will never be published",
     "private": "true",
     "devDependencies": {
