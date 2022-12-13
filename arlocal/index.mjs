@@ -50,7 +50,7 @@ const updateEnvFile = (matchString, filePath, replaceString) => {
 //Get Arlocal Host
 const arlocalHost = await getArlocalHost()
 //Generate ENV variable
-const envArlocalGW = "ARWEAVE_GATEWAY=" + "'" + arlocalHost + "'"
+const envArlocalGW = "ARWEAVE_GATEWAY=" + "http://" + arlocalHost + ":1984"
 //Update ENV file
 updateEnvFile('ARWEAVE_GATEWAY=', envFilePath, envArlocalGW)
 
